@@ -8,17 +8,17 @@
   </head>
   <body>
     <header>
-      <div class="conteudo-cabecalho">
+      <div class="content-header">
         <div class="logo">
-          <img src="assets/imagens/logo.png" alt="">
+          <img src="assets/images/logo.png" alt="">
           <h1>Trechos de músicas,<br> citações de livros e
             <br> <strong>suas melhores ideias
             <br> num só lugar!</strong>
           </h1>
         </div>
-        <div class="imagem-cabecalho">
+        <div class="image-header">
           <img 
-            src="assets/imagens/computador-cabecalho.png" 
+            src="assets/images/computador-cabecalho.png" 
             alt="">
         </div>
       </div>
@@ -28,41 +28,41 @@
       <div class="overlay overlay-color"></div>
       <h2>Adicione um pensamento novo:</h2>
       <section id="form-container">
-        <form id="pensamento-form">
-          <input type="hidden" id="pensamento-id" />
-          <label for="pensamento-conteudo">Pensamento</label>
+        <form id="thought-form">
+          <input type="hidden" id="thought-id" />
+          <label for="thought-content">Pensamento</label>
           <textarea 
-            id="pensamento-conteudo" 
+            id="thought-content" 
             placeholder="Digite seu pensamento" 
             required>
           </textarea>
           <label 
-            for="pensamento-autoria">
+            for="thought-authorship">
               Autoria ou Fonte
             </label>
           <input 
             type="text" 
-            id="pensamento-autoria" 
+            id="thought-authorship" 
             placeholder="Insira a autoria ou fonte" 
             required />
-          <div class="form-botoes">
+          <div class="form-buttons">
             <button 
               type="submit" 
-              id="botao-salvar">
+              id="button-save">
               Adicionar
             </button>
             <button 
               type="button" 
-              id="botao-cancelar">
+              id="button-cancel">
               Cancelar
             </button>
           </div>
         </form>
       </section>
       <span></span>
-      <section id="lista-pensamentos-container">
+      <section id="list-thoughts-container">
         <h3>Meu Mural</h3>
-        <ul id="lista-pensamentos"></ul>
+        <ul id="list-thoughts"></ul>
       </section>
     </main>
     <footer>
