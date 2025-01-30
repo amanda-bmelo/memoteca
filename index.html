@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +10,7 @@
     <script src="js/ui.js" defer></script>
     <script src="back/api.js" defer></script>
   </head>
+
   <body>
     <header>
       <div class="content-header">
@@ -26,10 +28,12 @@
         </div>
       </div>
     </header>
+
     <main class="background-overlay">
       <div class="overlay"></div>
       <div class="overlay overlay-color"></div>
       <h2>Adicione um pensamento novo:</h2>
+
       <section id="form-container">
         <form id="thought-form">
           <input type="hidden" id="thought-id" />
@@ -48,6 +52,10 @@
             id="thought-authorship" 
             placeholder="Insira a autoria ou fonte" 
             required />
+          <input 
+            type="date" 
+            id="thought-date"
+            required>
           <div class="form-buttons">
             <button 
               type="submit" 
@@ -62,16 +70,28 @@
           </div>
         </form>
       </section>
+
       <span></span>
       <section id="list-thoughts-container">
         <h3>Meu Mural</h3>
+
+        <section id="search-container">
+        <input 
+            type="text"
+            id="field-search"
+            placeholder="O que você procura?" />
+        <img class="search-icon" id="search-icon" src="assets/images/lupa.png" alt="">
+        </section>
+
         <ul id="list-thoughts"></ul>
       </section>
     </main>
+
     <footer>
       <p>&copy; 
         2024 Desenvolvido por Alura. 
         Projeto fictício sem fins comerciais.</p>
     </footer>
+
   </body>
 </html>

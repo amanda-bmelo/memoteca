@@ -1,27 +1,12 @@
 
 const ui = {
-  async renderThoughts() {
+  async renderThoughts(thoughtsList) {
     const listThoughts = document.getElementById("list-thoughts")
     listThoughts.innerHTML = ""
 
     try {
-      const thoughts = await api.searchThoughts()
-      thoughts.forEach(thought => {
-        listThoughts.innerHTML += `
-          <li class="li-thought" data-id="${thought.id}">
-          <img src="assets/images/aspas-azuis.png" alt="Aspas azuis" class="icon-quotation">
-          <div class="thought-content">${thought.content}</div>
-          <div class="thought-authorship">${thought.authorship}</div>
-          <div class="icons">
-            <button class="button-edit" onclick="ui.fillForm('${thought.id}')">
-              <img src="assets/images/icone-editar.png" alt="Editar">
-            </button>
-            <button class="button-delete" onclick="ui.deleteThought('${thought.id}')">
-              <img src="assets/images/icone-excluir.png" alt="Excluir">
-            </button>
-          </li>
-        `
-      })
+      const thoughts = thoughtsList || await api.searchThoughts()
+      thoughts.forEach(ui.addThoughtToList)
     }
     catch {
       alert('Error rendering thoughts')
@@ -51,6 +36,11 @@ const ui = {
     thoughtAuthorship.textContent = thought.authorship
     thoughtAuthorship.classList.add("thought-authorship")
 
+    const thoughtDate = document.createElement("div")
+    const formattedDate = thought.date.toLocaleDateString('pt-BR')
+    thoughtDate.textContent = formattedDate
+    thoughtDate.classList.add("thought-date")
+
     const buttonEdit = document.createElement("button")
     buttonEdit.classList.add("button-edit")
     buttonEdit.onclick = () => ui.fillForm(thought.id)
@@ -69,14 +59,32 @@ const ui = {
     iconDelete.alt = "Excluir"
     buttonDelete.appendChild(iconDelete)
 
+    const buttonFavorite = document.createElement("button")
+    buttonFavorite.classList.add("button-favorite")
+    buttonFavorite.onclick = async () => {
+      try {
+        await api.updateFavorite(thought.id, !thought.favorite)
+        ui.renderThoughts()
+      } catch (error) {
+        alert("Error updating thought")
+      }
+    }
+
+    const iconFavorite = document.createElement("img")
+    iconFavorite.src = thought.favorite ? "assets/images/icone-favorito.png" : "assets/images/icone-favorito_outline.png"
+    iconFavorite.alt = "Favoritar"
+    buttonFavorite.appendChild(iconFavorite)
+    
     const icons = document.createElement("div")
     icons.classList.add("icons")
+    icons.appendChild(buttonFavorite)
     icons.appendChild(buttonEdit)
     icons.appendChild(buttonDelete)
 
     li.appendChild(iconQuotation)
     li.appendChild(thoughtContent)
     li.appendChild(thoughtAuthorship)
+    li.appendChild(thoughtDate)
     li.appendChild(icons)
     listThoughts.appendChild(li)
   },
@@ -86,6 +94,7 @@ const ui = {
     document.getElementById("thought-id").value = thought.id
     document.getElementById("thought-content").value = thought.content
     document.getElementById("thought-authorship").value = thought.authorship
+    document.getElementById("thought-date").value = thought.date.toLocaleDateString('pt-BR').split('/').reverse().join('-')
   },
 
   async deleteThought(thoughtId) {
@@ -96,5 +105,6 @@ const ui = {
     catch {
       alert("Error deleting thought")
     }
-  }
+  },
+
 }

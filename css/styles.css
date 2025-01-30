@@ -125,12 +125,13 @@ h2, h3 {
   width: 100%;
 }
 
-#thought-content, #thought-authorship {
+#thought-content, #thought-authorship, #thought-date {
   padding: 16px;
   border-radius: 8px;
   background: var(--Gray-Light, #EDF0F4);
   word-wrap: break-word; 
-  overflow-wrap: break-word; 
+  overflow-wrap: break-word;
+  cursor: pointer;
 }
 
 #thought-content {
@@ -258,13 +259,19 @@ h2, h3 {
   font-weight: 600;
 }
 
+.thought-date {
+  font-size: 18px;
+  font-weight: 400;
+  text-align: end;
+}
+
 .icons {
   position: absolute;
   bottom: 16px;
   right: 16px;
 }
 
-.button-edit, .button-delete {
+.button-edit, .button-delete, .button-favorite {
   background: none;
   border: none;
   cursor: pointer;
@@ -272,9 +279,13 @@ h2, h3 {
   margin-left: 8px;
 }
 
-.button-edit img, .button-delete img {
+.button-edit img, .button-delete img, .button-favorite img {
   width: 20px;
   height: 20px;
+}
+
+button {
+  cursor: pointer;
 }
 
 span {
@@ -282,4 +293,36 @@ span {
   height: 1px;
   background: #041832;
   margin: 96px 0 48px 0;
+}
+
+/* Search */
+
+#search-container {
+  display: flex;
+  align-items: center;
+  margin-top: 56px;
+  width: 100%; 
+  max-width: 600px; 
+  margin: 56px auto; 
+  padding: 0 16px; 
+}
+
+#field-search {
+  flex: 1; 
+  width: 572px;
+  height: 48px;
+  padding: 8px 16px;
+  border-radius: 32px;
+  border: 1px solid #144480;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+}
+
+.search-icon {
+  margin-left: -40px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
